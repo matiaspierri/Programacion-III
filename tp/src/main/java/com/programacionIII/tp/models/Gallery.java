@@ -8,7 +8,7 @@ public class Gallery {
 
     public Gallery(User user){
         this.posts = new ArrayList<>();
-        this.user = user;
+        this.user = user; a
     }
 
 }
