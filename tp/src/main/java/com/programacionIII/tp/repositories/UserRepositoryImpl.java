@@ -1,13 +1,16 @@
 package com.programacionIII.tp.repositories;
 
 import com.programacionIII.tp.models.User;
+import jakarta.transaction.Transactional;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public class UserRepositoryImpl implements IUserRepository {
+public interface UserRepositoryImpl extends CrudRepository<User, Long> {
 
-    public User saveUser(User user) {
+    List<User> findByUsername(String username);
 
-        return user;
-    }
+
 }

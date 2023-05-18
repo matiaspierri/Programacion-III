@@ -6,18 +6,17 @@ import java.util.List;
 public class Feed {
     private List<Post> posts;
 
-    private Feed feed;
+    private static Feed feed;
 
     private Feed(){
         this.posts = new ArrayList<>();
     }
 
     public static Feed createFeed(){
-        if(this.feed == null){
-            this.feed = new Feed();
-        } else {
-            throw new Exception("Feed already exists");
+        if(feed == null){
+            feed = new Feed();
         }
+        return feed;
     }
 
     public void addPost(Post post){

@@ -13,10 +13,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    // service = new UserServiceImpl();
-
-
-
     public User createUser(String firstname, String lastname, String username, String phone, List<Integer> friendsIds) {
         return userService.createUser(firstname, lastname, username, phone, friendsIds);
     }

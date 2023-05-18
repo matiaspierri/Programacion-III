@@ -1,15 +1,24 @@
 package com.programacionIII.tp.models;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 
 
+@Entity
 public class Post {
-
-
+    @Id
+    @Column(name = "id_post")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     private String imagePath;
     private String description;
     private int likeCount;
     private List<String> recomendations;
+
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // generate constructor
     public Post(String imagePath, String description, int likeCount, List<String> recomendations) {

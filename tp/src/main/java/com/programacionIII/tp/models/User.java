@@ -1,15 +1,29 @@
 package com.programacionIII.tp.models;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+@Entity
 public class User {
 
-
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "id_user")
+    private Long id;
+    @Column
     private String firstname;
+    @Column
     private String lastname;
+    @Column
     private String username;
+    @Column
     private String phone;
+
     private List<Integer> friendsIds;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Post> posts;
 
     public User(String firstname, String lastname, String username, String phone, List<Integer> friendsIds){
         this.firstname=firstname;

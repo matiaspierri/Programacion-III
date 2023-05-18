@@ -1,5 +1,8 @@
 package com.programacionIII.tp.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Gallery {
 
     private List<Post> posts;
@@ -8,7 +11,7 @@ public class Gallery {
 
     public Gallery(User user){
         this.posts = new ArrayList<>();
-        this.user = user; a
+        this.user = user;
     }
 
 }
