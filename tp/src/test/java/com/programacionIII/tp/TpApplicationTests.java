@@ -13,17 +13,18 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 @SpringBootTest
+@ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TpApplicationTests {
 
     @Autowired
     private IUserService userService;
 
-//    @BeforeAll
-//    void beforeAll() {
-//        userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
-//    }
-//
+    @BeforeAll
+    void beforeAll() {
+        userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
+    }
+
     @Test
     void contextLoads() {
         //userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
