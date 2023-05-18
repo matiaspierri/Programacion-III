@@ -1,7 +1,7 @@
 package com.programacionIII.tp.config;
 
 import com.programacionIII.tp.repositories.IUserRepository;
-import com.programacionIII.tp.repositories.UserReposityImpl;
+import com.programacionIII.tp.repositories.UserRepositoryImpl;
 import com.programacionIII.tp.services.IUserService;
 import com.programacionIII.tp.services.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -16,5 +16,5 @@ public class AppConfig {
     }
 
     @Bean
-    public IUserRepository createUserRepository(){ return new UserReposityImpl(); }
+    public IUserRepository createUserRepository(){ return new UserRepositoryImpl(); }
 }

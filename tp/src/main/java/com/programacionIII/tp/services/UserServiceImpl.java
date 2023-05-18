@@ -12,6 +12,8 @@ public class UserServiceImpl implements IUserService{
 
     @Autowired
     private IUserRepository userRepository;
+
+
     @Override
     public User createUser(String firstname, String lastname, String username, String phone, List<Integer> friendsIds) {
         User user = new User(firstname, lastname, username, phone, friendsIds);
@@ -19,6 +21,8 @@ public class UserServiceImpl implements IUserService{
         User savedUser = userRepository.saveUser(user);
 
         return savedUser;
+
+
     }
 
 

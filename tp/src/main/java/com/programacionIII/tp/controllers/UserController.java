@@ -1,6 +1,7 @@
 package com.programacionIII.tp.controllers;
 
 import com.programacionIII.tp.services.IUserService;
+import com.programacionIII.tp.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -12,9 +13,17 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    // service = new UserServiceImpl();
+
+
+
     public User createUser(String firstname, String lastname, String username, String phone, List<Integer> friendsIds) {
         return userService.createUser(firstname, lastname, username, phone, friendsIds);
     }
+
+
+
+
 
 
 
