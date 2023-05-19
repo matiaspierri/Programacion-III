@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IUserService {
     public User createUser(String firstname, String lastname, String username, String phone, List<Integer> friendsIds);
-    User findByUsername(String username);
+    List<User> findByUsername(String username);
+    List<User> allUsers();
 }
 

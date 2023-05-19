@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.programacionIII.tp.services.IUserService;
 import com.programacionIII.tp.models.User;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import java.util.List;
 
 
 
@@ -20,17 +21,21 @@ class TpApplicationTests {
     @Autowired
     private IUserService userService;
 
-    @BeforeAll
-    void beforeAll() {
+
+    @Test
+    void testCreateUser() {
         userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
+        User user = userService.findByUsername("juanperez").get(0);
+
+        assert(user.getFirstname().equals("Juan"));
     }
 
     @Test
-    void contextLoads() {
-        //userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
-        //User user = userService.findByUsername("juanperez");
-        assert(true);
+    void allUsers() {
+        List<User> users = userService.allUsers();
+        assert (users.size() > 0);
     }
+
 
 }
 

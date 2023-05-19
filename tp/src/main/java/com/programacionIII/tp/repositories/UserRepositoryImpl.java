@@ -12,5 +12,6 @@ public interface UserRepositoryImpl extends CrudRepository<User, Long> {
 
     List<User> findByUsername(String username);
 
+    List<User> findAll();
 
 }
