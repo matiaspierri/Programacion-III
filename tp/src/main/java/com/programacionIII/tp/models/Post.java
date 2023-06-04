@@ -8,24 +8,26 @@ import java.util.List;
 @Entity
 public class Post {
     @Id
-    @Column(name = "id_post")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String imagePath;
+    @Column
     private String description;
+    @Column
     private int likeCount;
+    @Transient
     private List<String> recomendations;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     // generate constructor
-    public Post(String imagePath, String description, int likeCount, List<String> recomendations) {
+    public Post(String imagePath, String description, int likeCount) {
         this.imagePath = imagePath;
         this.description = description;
         this.likeCount = likeCount;
-        this.recomendations = recomendations;
     }
 
     public String getImagePath() {

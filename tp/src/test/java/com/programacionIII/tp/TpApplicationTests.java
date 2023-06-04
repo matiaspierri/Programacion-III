@@ -24,10 +24,26 @@ class TpApplicationTests {
 
     @Test
     void testCreateUser() {
-        userService.createUser("Juan", "Perez", "juanperez", "12345678", null);
+        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
         User user = userService.findByUsername("juanperez").get(0);
 
-        assert(user.getFirstname().equals("Juan"));
+        assert(user.getFirstname().equals("Juan124"));
+    }
+
+    @Test
+    void testCreateUser() {
+        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
+        User user = userService.findByUsername("juanperez").get(0);
+
+        assert(user.getFirstname().equals("Juan124"));
+    }
+
+    @Test
+    void testCreateUser() {
+        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
+        User user = userService.findByUsername("juanperez").get(0);
+
+        assert(user.getFirstname().equals("Juan124"));
     }
 
     @Test

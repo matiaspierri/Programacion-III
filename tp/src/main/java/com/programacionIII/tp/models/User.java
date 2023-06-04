@@ -5,12 +5,11 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "id_user")
+    @Column()
     private Long id;
     @Column
     private String firstname;
@@ -25,6 +24,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Post> posts;
+
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Gallery> galleries;
+
 
     public User(){}
     public User(String firstname, String lastname, String username, String phone, List<Integer> friendsIds){
