@@ -20,10 +20,8 @@ public class PostServiceImpl implements IPostService{
 
     @Override
     @Transactional
-    public Post createPost(String imagePath, String description, User user) {
-        Post post = new Post(imagePath, description, user);
+    public Post createPost(Post post) {
         Post savedPost = postRepository.save(post);
-
         return savedPost;
     }
 
@@ -69,6 +67,13 @@ public class PostServiceImpl implements IPostService{
 
     @Override
     public List<Post> allPosts() {
+
+        // CREATE dummy post for each call to populate the database
+        Post post = new Post("imagePath", "description",null);
+
+        postRepository.save(post);
+
+
         return (List<Post>) postRepository.findAll();
     }
 

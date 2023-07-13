@@ -36,7 +36,7 @@ public class SpringSecurityConfig {
                 .requestMatchers("/api/user/**").permitAll()
 //                .requestMatchers("/api/bank/**").permitAll()
                 // Establece que solo autenticados pueden ejecutar los endpoints de esa ruta
-                .requestMatchers("/api/card/**").authenticated()
+                .requestMatchers("/api/post/**").authenticated()
                 // Establece que solo usuarios administradores pueden ejecutar los endpoints de esa ruta
                 .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                 // Para cualquier otra request, debe haber un usuario autenticado.

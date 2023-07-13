@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IPostService {
 
-    public Post createPost(String imagePath,String description, User user);
+    public Post createPost(Post post);
 
     public Post updatePost(Post post, String imagePath,String description);
 
