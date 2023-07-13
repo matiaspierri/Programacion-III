@@ -7,6 +7,8 @@ import java.util.List;
 
 @Entity
 public class Post {
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -15,7 +17,7 @@ public class Post {
     private String imagePath;
     @Column
     private String description;
-    @Column
+    @Column(nullable = true)
     private int likeCount;
     @Transient
     private List<String> recomendations;
@@ -23,13 +25,20 @@ public class Post {
     @ManyToOne(cascade = {CascadeType.MERGE})
     private User user;
 
+
+    // default constructo
+    public Post(){}
+
     // generate constructor
-    public Post(String imagePath, String description, int likeCount) {
+    public Post(String imagePath, String description, User user) {
         this.imagePath = imagePath;
         this.description = description;
-        this.likeCount = likeCount;
+        this.user = user;
     }
 
+    public Long getId() {
+        return id;
+    }
     public String getImagePath() {
         return imagePath;
     }

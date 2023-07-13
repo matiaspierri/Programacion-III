@@ -1,6 +1,5 @@
 package com.programacionIII.tp.config;
 
-import com.programacionIII.tp.repositories.IUserRepository;
 import com.programacionIII.tp.repositories.UserRepositoryImpl;
 import com.programacionIII.tp.services.IUserService;
 import com.programacionIII.tp.services.UserServiceImpl;

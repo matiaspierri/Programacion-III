@@ -14,7 +14,7 @@ public class Gallery {
     private Long id;
 
     @OneToMany
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private List<Post> posts;
 
     @OneToOne

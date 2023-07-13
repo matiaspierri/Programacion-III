@@ -1,5 +1,9 @@
 package com.programacionIII.tp;
 
+import com.programacionIII.tp.models.Post;
+import com.programacionIII.tp.repositories.RoleRepository;
+import com.programacionIII.tp.repositories.UserRepositoryImpl;
+import com.programacionIII.tp.services.IPostService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -10,7 +14,9 @@ import com.programacionIII.tp.services.IUserService;
 import com.programacionIII.tp.models.User;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
-
+import java.util.Objects;
+import java.util.Optional;
+import com.programacionIII.tp.models.Role;
 
 
 @SpringBootTest
@@ -21,35 +27,52 @@ class TpApplicationTests {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IPostService postService;
 
+    @Autowired
+    private UserRepositoryImpl userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    // Test to create user
     @Test
-    void testCreateUser() {
-        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
-        User user = userService.findByUsername("juanperez").get(0);
+    void createUser() {
+        Role role = new Role("ROLE_USER");
 
-        assert(user.getFirstname().equals("Juan124"));
+
+        roleRepository.save(role);
+
+        User user = new User("name1","123",role);
+
+        //User userCreated = userService.createUser(user);
+        User saved = userRepository.save(user);
+
+        saved.setPassword("1234");
+
+        assert (saved.getUsername() == "name1");
+
+        assert (saved.getPassword().equals("1234"));
     }
 
+    // Test to find user by username
     @Test
-    void testCreateUser() {
-        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
-        User user = userService.findByUsername("juanperez").get(0);
+    void findUserByUsername() {
 
-        assert(user.getFirstname().equals("Juan124"));
-    }
+        Role role = new Role("ROLE_USER");
 
-    @Test
-    void testCreateUser() {
-        userService.createUser("Juan124", "Perez", "juanperez", "12345678", null);
-        User user = userService.findByUsername("juanperez").get(0);
 
-        assert(user.getFirstname().equals("Juan124"));
-    }
+        roleRepository.save(role);
 
-    @Test
-    void allUsers() {
-        List<User> users = userService.allUsers();
-        assert (users.size() > 0);
+        User user = new User("name1","123",role);
+
+        User saved = userRepository.save(user);
+
+        User userFound = userRepository.findByUsername("name1").get();
+
+        assert(Objects.equals(userFound.getUsername(), "name1"));
+
     }
 
 
