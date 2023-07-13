@@ -13,6 +13,7 @@ import { ContactComponent } from './componentes/contact/contact.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './componentes/login/login.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './componentes/login/login.component';
     HomeComponent,
     ContactComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

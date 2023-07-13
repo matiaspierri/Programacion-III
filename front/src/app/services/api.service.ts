@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { ResponseLoginDTO } from '../dto/ResponseLoginDTO';
 import { User } from '../model/User';
+import { Post } from '../model/Post';
 
 
 @Injectable({
@@ -31,5 +32,18 @@ export class ApiService {
     return this.http.get<User>(this._url + 'user', this.getAuthHeader())
   }
 
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this._url+ 'post', {headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')} })
+  }
+
+  createPost(newPost: Post): Observable<Post> {
+    return this.http.post(this._url + 'post', newPost,this.getAuthHeader())
+  }
+
+  deletePost(post: Post): Observable<Post> {
+    return this.http.delete(this._url + 'post/' + post.id, this.getAuthHeader())
+  }
+
+  
   
 }
