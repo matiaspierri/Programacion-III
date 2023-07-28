@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { ApiService } from "src/app/services/api.service";
 import { Location } from '@angular/common';
 
 @Component({
@@ -10,11 +11,13 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
   }
 
-
+  loadDummyData() : void {
+    
+  }
 
 }

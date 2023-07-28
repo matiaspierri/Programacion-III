@@ -1,22 +1,9 @@
 package com.programacionIII.tp.controllers;
-
-import com.programacionIII.tp.repositories.UserRepositoryImpl;
-import com.programacionIII.tp.services.IUserService;
-import com.programacionIII.tp.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import com.programacionIII.tp.models.*;
-import org.springframework.stereotype.Controller;
 import com.programacionIII.tp.services.*;
-
+import com.programacionIII.tp.models.*;
 
 
 @RestController
@@ -24,26 +11,27 @@ import com.programacionIII.tp.services.*;
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class PostController {
 
-
     @Autowired
     private PostServiceImpl postService;
 
-    public PostController() {
+    public PostController() {}
 
-    }
     @PostMapping("/create")
-    public Post createUser(@RequestBody Post post) {
-
+    public Post createPost(@RequestBody Post post) {
         return postService.createPost(post);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/")
+    public Post deletePost(@RequestBody Post post) {
+        return postService.deletePost(post);
+    }
+
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "/all")
     public List<Post> getAllPosts() {
         return this.postService.allPosts();
     }
-
-
-
 
 }

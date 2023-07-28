@@ -2,7 +2,7 @@ import { Role } from "./Role"
 
 export class User {
     id?: string
-    username?: string
+    username: string
     password?: string
     role?: Role 
 

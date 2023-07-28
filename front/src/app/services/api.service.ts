@@ -33,17 +33,17 @@ export class ApiService {
   }
 
   getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this._url+ 'post', {headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')} })
+    return this.http.get<Post[]>(this._url+ 'post/all', {headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')} })
   }
 
   createPost(newPost: Post): Observable<Post> {
-    return this.http.post(this._url + 'post', newPost,this.getAuthHeader())
+    return this.http.post<Post>(this._url + 'post/create', newPost,this.getAuthHeader())
   }
 
-  deletePost(post: Post): Observable<Post> {
+  deletePost(post: Post): Observable<any> {
     return this.http.delete(this._url + 'post/' + post.id, this.getAuthHeader())
   }
 
-  
+
   
 }

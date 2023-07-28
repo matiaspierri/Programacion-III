@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../model/Post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../services/post.service';
+import { UserService } from "../services/user.service";
+import { User } from '../model/User';
+import { Role } from "../model/Role";
 
 
 @Component({
@@ -11,7 +14,10 @@ import { PostService } from '../services/post.service';
 })
 export class PostComponent implements OnInit {
 
-  posts: Post[] = [];
+  posts: Post[] = []
+  user!: User
+
+  search: string=''
 
   newPostForm = new FormGroup(
     {
@@ -21,7 +27,7 @@ export class PostComponent implements OnInit {
     }
   )
 
-  constructor(private postService:PostService){}
+  constructor(private postService:PostService, private userService:UserService){}
 
   ngOnInit(): void {
     this.postService.getAllPosts().subscribe(
@@ -30,13 +36,21 @@ export class PostComponent implements OnInit {
         this.posts = data
       }
     )
+
+    this.userService.getUserInfo().subscribe(
+      (data:User) => {
+        this.user = data
+      }
+    )
   }
 
   onSubmit(): void {
     let imagePath = this.newPostForm.value.imagePath!
     let description = this.newPostForm.value.description!
     let likeCount = this.newPostForm.value.likeCount!
-    this.postService.createPost(imagePath,description,likeCount).subscribe((newPost) => {
+
+
+    this.postService.createPost(imagePath,description,likeCount,this.user).subscribe((newPost) => {
       console.log(newPost);
       this.posts.push(newPost)
     })
@@ -46,6 +60,10 @@ export class PostComponent implements OnInit {
 
   deletePost(post: Post): void {
     this.postService.deletePost(post).subscribe( () => this.posts = this.posts.filter((p) => { return (p.id != post.id)}))
+  }
+
+  filterPosts() {
+    console.log(this.search);
   }
 
 

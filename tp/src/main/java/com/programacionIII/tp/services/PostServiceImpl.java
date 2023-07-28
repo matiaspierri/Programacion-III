@@ -41,8 +41,9 @@ public class PostServiceImpl implements IPostService{
 
     @Override
     @Transactional
-    public void deletePost(Post post) {
+    public Post deletePost(Post post) {
         postRepository.delete(post);
+        return post;
     }
 
     @Override
@@ -67,12 +68,6 @@ public class PostServiceImpl implements IPostService{
 
     @Override
     public List<Post> allPosts() {
-
-        // CREATE dummy post for each call to populate the database
-        Post post = new Post("imagePath", "description",null);
-
-        postRepository.save(post);
-
 
         return (List<Post>) postRepository.findAll();
     }

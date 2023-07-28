@@ -13,7 +13,7 @@ public interface IPostService {
 
     public Post updatePost(Post post, String imagePath,String description);
 
-    public void deletePost(Post post);
+    public Post deletePost(Post post);
 
     public Optional<Post> findByUser(User user);
     public Optional<Post> findByDescription(String description);
