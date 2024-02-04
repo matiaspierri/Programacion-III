@@ -4,6 +4,7 @@ package com.example.programacion3.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class User {
@@ -14,6 +15,8 @@ public class User {
     private String username;
     private String password; // Consider storing encrypted passwords only
     private String email;
+
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts;
@@ -26,15 +29,31 @@ public class User {
     private List<User> friends;
 
     // Constructor, getters, and setter
-    public User(Long id, String username, String password, String email, List<Post> posts, List<User> friends) {
-        this.id = id;
+    public User(String username, String password, String email, List<Post> posts, List<User> friends) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.posts = posts;
-        this.friends = friends;
+
+        // Create an empty list if the parameter is null
+        if (posts == null) {
+            this.posts = new ArrayList<Post>();
+        } else {
+            this.posts = posts;
+        }
+        if (friends == null) {
+            this.friends = new ArrayList<User>();
+        } else {
+            this.friends = friends;
+        }
+
     }
     public User() {}
+
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
 
 
@@ -84,5 +103,13 @@ public class User {
 
     public void setFriends(List<User> friends) {
         this.friends = friends;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

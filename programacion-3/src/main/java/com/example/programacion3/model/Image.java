@@ -2,8 +2,8 @@ package com.example.programacion3.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 
+import java.util.List;
 @Entity
 public class Image {
     @Id
@@ -18,8 +18,7 @@ public class Image {
     private Post post;
 
     // Constructor, getters, and setters
-    public Image(Long id, String title, String url, Post post) {
-        this.id = id;
+    public Image(String title, String url, Post post) {
         this.title = title;
         this.url = url;
         this.post = post;

@@ -10,8 +10,8 @@ public class Administrator extends User {
     private Boolean canDeletePosts;
 
 
-public Administrator(Long id, String username, String password, String email, List<Post> posts, List<User> friends, Boolean canModifyUsers, Boolean canDeletePosts) {
-        super(id, username, password, email, posts, friends);
+public Administrator(String username, String password, String email, List<Post> posts, List<User> friends, Boolean canModifyUsers, Boolean canDeletePosts) {
+        super(username, password, email, posts, friends);
         this.canModifyUsers = canModifyUsers;
         this.canDeletePosts = canDeletePosts;
     }

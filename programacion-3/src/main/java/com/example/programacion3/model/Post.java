@@ -2,6 +2,7 @@ package com.example.programacion3.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,22 +20,19 @@ public class Post {
     private List<Image> images;
 
     // Constructor, getters, and setters
-    public Post(Long id, String description, User user, List<Image> images) {
-        this.id = id;
+    public Post(String description, User user, List<Image> images) {
         this.description = description;
         this.user = user;
-        this.images = images;
+
+        // Create an empty list if the parameter is null
+        if (images == null) {
+            this.images = new ArrayList<Image>();
+        } else {
+            this.images = images;
+        }
     }
 
     public Post() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -58,5 +56,9 @@ public class Post {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
