@@ -19,16 +19,29 @@ public class Programacion3Application {
 	@Bean
 	CommandLineRunner run(@Autowired IUserService userService) {
 		return args -> {
-			// Create roles and users
+
+			// Create roles
 			Role admin = new Role("ADMIN");
 			Role user = new Role("USER");
 			userService.createRole(admin);
 			userService.createRole(user);
-			User userAdmin = userService.createUser(new User("admin", "admin", admin));
-			User user1 = userService.createUser(new User("user1", "user1", user));
-			User user2 = userService.createUser(new User("user2", "user2", user));
-			User user3 = userService.createUser(new User("user3", "user3", user));
-			User user4 = userService.createUser(new User("user4", "user4", user));
+
+			// Create users
+			User userAdmin = userService.createUser(new User("admin", "admin", "admin@gmail.com", admin, null, null));
+			User user1 = userService.createUser(new User("user1", "user1", "user1@gmail.com", user, null, null));
+			User user2 = userService.createUser(new User("user2", "user2", "user2@gmail.com", user, null, null));
+			User user3 = userService.createUser(new User("user3", "user3", "user3@gmail.com", user, null, null));
+			User user4 = userService.createUser(new User("user4", "user4", "user4@gmail.com", user, null, null));
+
+			// Add friends
+			userService.addFriend(user1, user2);
+			userService.addFriend(user1, user3);
+			userService.addFriend(user1, user4);
+			userService.addFriend(user2, user3);
+			userService.addFriend(user2, user4);
+			userService.addFriend(user3, user4);
+
+
 		};
 	}
 }

@@ -5,15 +5,15 @@ import com.example.programacion3.models.Role;
 import com.example.programacion3.models.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IUserService {
     User createUser(User user);
-    User createUser(String username, String password, String role);
     Role createRole(Role role);
     boolean checkUserById(Long id);
     String authenticate(String username, String password);
     User getUserInfo();
-    ArrayList<User> getAllEmployees();
-    User updateUser(Long id, String username, String password, String role);
-    void deleteUser(Long id);
+    List<User> getFriends(User user);
+    User addFriend(User user, User friend);
+    User removeFriend(User user, User friend);
 }

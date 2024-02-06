@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -36,19 +37,6 @@ public class UserServiceImpl implements IUserService {
     public User createUser(User user) {
         String password = user.getPassword();
         user.setPassword(passwordEncoder.encode(password));
-        return this.userRepository.save(user);
-    }
-
-    @Override
-    public User createUser(String username, String password, String role) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRole(this.roleRepository.findByName(role).orElse(null));
-        if(user.getRole() == null) {
-            this.roleRepository.save(new Role(role));
-            user.setRole(this.roleRepository.findByName(role).orElse(null));
-        }
         return this.userRepository.save(user);
     }
 
@@ -77,23 +65,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ArrayList<User> getAllEmployees() {
-        return this.userRepository.findAllByRole_Name("EMPLOYEE");
+    public List<User> getFriends(User user){
+        return user.getFriends();
     }
-
     @Override
-    public User updateUser(Long id, String username, String password, String role) {
-        User user = this.userRepository.findById(id).orElse(null);
-        if(user == null) { return null; }
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRole(this.roleRepository.findByName(role).orElse(null));
+    public User addFriend(User user, User friend){
+        user.getFriends().add(friend);
         return this.userRepository.save(user);
     }
-
     @Override
-    public void deleteUser(Long id) {
-        this.userRepository.deleteById(id);
+    public User removeFriend(User user, User friend){
+        user.getFriends().remove(friend);
+        return this.userRepository.save(user);
     }
-
 }
