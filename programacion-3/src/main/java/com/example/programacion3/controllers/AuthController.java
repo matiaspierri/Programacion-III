@@ -1,12 +1,10 @@
-package com.example.programacion3.controller;
+package com.example.programacion3.controllers;
+
+import com.example.programacion3.dto.Login.LoginDTO;
+import com.example.programacion3.dto.Login.ResponseLoginDTO;
+import com.example.programacion3.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.programacion3.dto.ResponseLoginDTO;
-import com.example.programacion3.service.UserService;
-import com.example.programacion3.dto.LoginDTO;
-
-
 
 @RestController
 @RequestMapping(value = "/api/auth")
@@ -14,10 +12,11 @@ import com.example.programacion3.dto.LoginDTO;
 public class AuthController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @PostMapping(path = "/login")
     public ResponseLoginDTO authenticate(@RequestBody LoginDTO loginDTO) {
         return new ResponseLoginDTO(this.userService.authenticate(loginDTO.getUsername(), loginDTO.getPassword()));
     }
 }
+

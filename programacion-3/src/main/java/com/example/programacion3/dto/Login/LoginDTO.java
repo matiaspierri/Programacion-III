@@ -1,4 +1,4 @@
-package com.example.programacion3.dto;
+package com.example.programacion3.dto.Login;
 
 public class LoginDTO {
     private String username;

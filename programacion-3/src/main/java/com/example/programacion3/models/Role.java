@@ -1,4 +1,4 @@
-package com.example.programacion3.model;
+package com.example.programacion3.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "roles")
 public class Role {
 
     @Id
@@ -51,5 +52,4 @@ public class Role {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
 }
