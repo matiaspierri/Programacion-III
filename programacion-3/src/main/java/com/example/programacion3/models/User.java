@@ -1,6 +1,9 @@
 package com.example.programacion3.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +46,11 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "id_friend")
     )
     private List<User> friends = new ArrayList<>();
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<Comment> comments = new ArrayList<>();
 
     public User() {
     }
@@ -112,23 +120,23 @@ public class User implements UserDetails {
         return email;
     }
 
-public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) {
+            this.email = email;
+        }
 
-public List<Post> getPosts() {
-        return posts;
-    }
+    public List<Post> getPosts() {
+            return posts;
+        }
 
-public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
+    public void setPosts(List<Post> posts) {
+            this.posts = posts;
+        }
 
-public List<User> getFriends() {
-        return friends;
-    }
+    public List<User> getFriends() {
+            return friends;
+        }
 
-public void setFriends(List<User> friends) {
+    public void setFriends(List<User> friends) {
         this.friends = friends;
     }
 
@@ -138,5 +146,13 @@ public void setFriends(List<User> friends) {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

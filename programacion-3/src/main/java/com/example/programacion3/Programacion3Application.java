@@ -4,6 +4,7 @@ import com.example.programacion3.models.Image;
 import com.example.programacion3.models.Post;
 import com.example.programacion3.models.Role;
 import com.example.programacion3.models.User;
+import com.example.programacion3.services.interfaces.ICommentService;
 import com.example.programacion3.services.interfaces.IImageService;
 import com.example.programacion3.services.interfaces.IPostService;
 import com.example.programacion3.services.interfaces.IUserService;
@@ -21,7 +22,7 @@ public class Programacion3Application {
 	}
 
 	@Bean
-	CommandLineRunner run(@Autowired IUserService userService, @Autowired IPostService postService, @Autowired IImageService imageService) {
+	CommandLineRunner run(@Autowired IUserService userService, @Autowired IPostService postService, @Autowired IImageService imageService, @Autowired ICommentService commentService) {
 		return args -> {
 
 			// Create roles
@@ -62,7 +63,24 @@ public class Programacion3Application {
 			Image image10 = imageService.createImage("Image10", "https://www.google.com", post4);
 			Image image11 = imageService.createImage("Image11", "https://www.google.com", post4);
 			Image image12 = imageService.createImage("Image12", "https://www.google.com", post4);
-			
+
+			// Add comments
+			commentService.createComment("Comment1", user1, post1);
+			commentService.createComment("Comment2", user2, post1);
+			commentService.createComment("Comment3", user3, post1);
+			commentService.createComment("Comment4", user4, post1);
+			commentService.createComment("Comment5", user1, post2);
+			commentService.createComment("Comment6", user2, post2);
+			commentService.createComment("Comment7", user3, post2);
+			commentService.createComment("Comment8", user4, post2);
+			commentService.createComment("Comment9", user1, post3);
+			commentService.createComment("Comment10", user2, post3);
+			commentService.createComment("Comment11", user3, post3);
+			commentService.createComment("Comment12", user4, post3);
+			commentService.createComment("Comment13", user1, post4);
+			commentService.createComment("Comment14", user2, post4);
+			commentService.createComment("Comment15", user3, post4);
+			commentService.createComment("Comment16", user4, post4);
 
 		};
 	}
