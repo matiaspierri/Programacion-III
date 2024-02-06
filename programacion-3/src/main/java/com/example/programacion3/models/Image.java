@@ -38,7 +38,6 @@ public class Image {
 
     }
 
-
     public Image(String title, String url, Post post){
         this.title = title;
         this.url = url;

@@ -34,10 +34,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(String description, User user, List<Image> images) {
+    public Post(String description, User user) {
         this.description = description;
         this.user = user;
-        this.images = Objects.requireNonNullElseGet(images, ArrayList::new);
     }
 
     public void setId(Long id) {

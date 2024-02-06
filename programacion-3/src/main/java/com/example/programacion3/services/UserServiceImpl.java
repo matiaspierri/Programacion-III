@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,15 +66,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getFriends(User user){
         return user.getFriends();
     }
     @Override
+    @Transactional
     public User addFriend(User user, User friend){
         user.getFriends().add(friend);
         return this.userRepository.save(user);
     }
     @Override
+    @Transactional
     public User removeFriend(User user, User friend){
         user.getFriends().remove(friend);
         return this.userRepository.save(user);
