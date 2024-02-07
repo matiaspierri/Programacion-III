@@ -1,15 +1,7 @@
 package com.example.programacion3.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "images")
@@ -20,18 +12,14 @@ public class Image {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull(message = "Title cannot be null")
-    @NotBlank(message = "Title cannot be blank")
     private String title;
 
     @Column(nullable = false)
-    @NotNull(message = "Url cannot be null")
-    @NotBlank(message = "Url cannot be blank")
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", nullable = false)
-    @JsonBackReference
+    @JsonManagedReference
     private Post post;
 
     public Image(){

@@ -3,15 +3,11 @@ package com.example.programacion3.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "posts")
@@ -22,8 +18,6 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull(message = "Description cannot be null")
-    @NotBlank(message = "Description cannot be blank")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,7 +26,7 @@ public class Post {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Image> images = new ArrayList<>();
 
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -80,5 +74,11 @@ public class Post {
     }
     public void clearImages(){
         this.images.clear();
+    }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    public List<Comment> getComments(){
+        return this.comments;
     }
 }

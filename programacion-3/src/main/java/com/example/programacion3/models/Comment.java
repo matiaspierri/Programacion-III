@@ -1,9 +1,13 @@
 package com.example.programacion3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -14,19 +18,20 @@ public class Comment {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull(message = "Comment cannot be null")
-    @NotBlank(message = "Comment Name cannot be blank")
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", nullable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private Post post;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     public Comment(){
 
@@ -60,5 +65,11 @@ public class Comment {
     }
     public void setPost(Post post){
         this.post = post;
+    }
+    public LocalDateTime getCreatedAt(){
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt = createdAt;
     }
 }

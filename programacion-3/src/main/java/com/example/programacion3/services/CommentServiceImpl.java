@@ -9,11 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 public class CommentServiceImpl implements ICommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
+    private PostServiceImpl postService;
 
     @Override
     @Transactional
@@ -25,5 +32,19 @@ public class CommentServiceImpl implements ICommentService {
     @Transactional
     public Comment createComment(String text, User user, Post post) {
         return commentRepository.save(new Comment(text, user, post));
+    }
+
+    @Override
+    @Transactional
+    public Comment createComment(String text, Long postId){
+        User user = userService.getUserInfo();
+        Post post = postService.getPostById(postId);
+        return commentRepository.save(new Comment(text, user, post));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ArrayList<Comment> getCommentsByPostId(Long postId) {
+        return commentRepository.findCommentsByPostIdOrderByCreatedAt(postId);
     }
 }
