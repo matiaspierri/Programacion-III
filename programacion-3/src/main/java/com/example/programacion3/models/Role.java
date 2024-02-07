@@ -1,4 +1,5 @@
 package com.example.programacion3.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -18,7 +19,7 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private List<User> users = new ArrayList<>();
 
     public Role() {

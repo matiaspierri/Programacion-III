@@ -15,6 +15,8 @@ public interface IUserService {
     String authenticate(String username, String password);
     User getUserInfo();
     Set<User> getFriends();
+    User addFriend(Long id);
     User addFriend(Long userId, Long friendId);
+    User removeFriend(Long id);
     User removeFriend(Long userId, Long friendId);
 }

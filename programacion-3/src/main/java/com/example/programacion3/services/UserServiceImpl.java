@@ -72,6 +72,13 @@ public class UserServiceImpl implements IUserService {
         User user = this.getUserInfo();
         return user.getFriends();
     }
+
+    @Override
+    @Transactional
+    public User addFriend(Long id){
+        User user = this.getUserInfo();
+        return this.addFriend(user.getId(), id);
+    }
     @Override
     @Transactional
     public User addFriend(Long userId, Long friendId){
@@ -80,6 +87,12 @@ public class UserServiceImpl implements IUserService {
         if (user == null || friend == null) { return null; }
         user.addFriend(friend);
         return this.userRepository.save(user);
+    }
+    @Override
+    @Transactional
+    public User removeFriend(Long id){
+        User user = this.getUserInfo();
+        return this.removeFriend(user.getId(), id);
     }
     @Override
     @Transactional

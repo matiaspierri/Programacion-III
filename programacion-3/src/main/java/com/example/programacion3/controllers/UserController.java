@@ -29,4 +29,14 @@ public class UserController {
     public Iterable<User> getFriends() {
         return this.userService.getFriends();
     }
+
+    @PostMapping(path = "/addfriend/{id}")
+    public User addFriend(@PathVariable Long id) {
+        return this.userService.addFriend(id);
+    }
+
+    @DeleteMapping(path = "/removefriend/{id}")
+    public User removeFriend(@PathVariable Long id) {
+        return this.userService.removeFriend(id);
+    }
 }

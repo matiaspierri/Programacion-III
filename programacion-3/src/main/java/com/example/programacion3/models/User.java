@@ -1,6 +1,7 @@
 package com.example.programacion3.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,9 +32,11 @@ public class User implements UserDetails {
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = {})
     @JoinColumn(name = "id_role", nullable = false)
+    @JsonManagedReference
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Post> posts = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -42,6 +45,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_friend")
     )
+    @JsonIgnore
     private Set<User> friends = new HashSet<>();
 
     @OnDelete(action = OnDeleteAction.CASCADE)
