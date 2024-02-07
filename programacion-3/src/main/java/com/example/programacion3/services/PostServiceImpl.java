@@ -1,6 +1,7 @@
 package com.example.programacion3.services;
 
 
+import com.example.programacion3.dto.Image.ImageDTO;
 import com.example.programacion3.models.Image;
 import com.example.programacion3.models.Post;
 import com.example.programacion3.models.User;
@@ -18,6 +19,9 @@ public class PostServiceImpl implements IPostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private UserServiceImpl userService;
+
     @Override
     @Transactional
     public Post createPost(Post post) {
@@ -28,6 +32,15 @@ public class PostServiceImpl implements IPostService {
     @Transactional
     public Post createPost(String description, User user) {
         return this.postRepository.save(new Post(description, user));
+    }
+
+    @Override
+    @Transactional
+    public Post createPost(String description, List<ImageDTO> images) {
+        User user = userService.getUserInfo();
+        Post post = new Post(description, user);
+        images.forEach(imageDTO -> post.addImage(new Image(imageDTO.getTitle(), imageDTO.getUrl(), post)));
+        return this.postRepository.save(post);
     }
 
     @Override
