@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -45,7 +42,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_friend")
     )
-    private List<User> friends = new ArrayList<>();
+    private Set<User> friends = new HashSet<>();
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
@@ -55,13 +52,13 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String email,  Role role, List<Post> posts, List<User> friends) {
+    public User(String username, String password, String email,  Role role) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.posts = Objects.requireNonNullElseGet(posts, ArrayList::new);
-        this.friends = Objects.requireNonNullElseGet(friends, ArrayList::new);
         this.role = role;
+        this.posts = new ArrayList<>();
+        this.friends = new HashSet<>();
     }
 
     public Long getId() {
@@ -132,11 +129,11 @@ public class User implements UserDetails {
             this.posts = posts;
         }
 
-    public List<User> getFriends() {
+    public Set<User> getFriends() {
             return friends;
         }
 
-    public void setFriends(List<User> friends) {
+    public void setFriends(Set<User> friends) {
         this.friends = friends;
     }
 
@@ -154,5 +151,13 @@ public class User implements UserDetails {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public void addFriend(User friend) {
+        friends.add(friend);
+    }
+
+    public void removeFriend(User friend) {
+        friends.remove(friend);
     }
 }

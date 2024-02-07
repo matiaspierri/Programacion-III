@@ -6,6 +6,7 @@ import com.example.programacion3.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public interface IUserService {
     User createUser(User user);
@@ -13,7 +14,7 @@ public interface IUserService {
     boolean checkUserById(Long id);
     String authenticate(String username, String password);
     User getUserInfo();
-    List<User> getFriends(User user);
-    User addFriend(User user, User friend);
-    User removeFriend(User user, User friend);
+    Set<User> getFriends();
+    User addFriend(Long userId, Long friendId);
+    User removeFriend(Long userId, Long friendId);
 }

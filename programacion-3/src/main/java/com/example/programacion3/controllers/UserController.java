@@ -25,4 +25,8 @@ public class UserController {
         return this.userService.getUserInfo();
     }
 
+    @GetMapping(path = "/friends")
+    public Iterable<User> getFriends() {
+        return this.userService.getFriends();
+    }
 }

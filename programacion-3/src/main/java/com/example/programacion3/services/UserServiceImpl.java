@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -67,19 +68,26 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> getFriends(User user){
+    public Set<User> getFriends(){
+        User user = this.getUserInfo();
         return user.getFriends();
     }
     @Override
     @Transactional
-    public User addFriend(User user, User friend){
-        user.getFriends().add(friend);
+    public User addFriend(Long userId, Long friendId){
+        User user = this.userRepository.findById(userId).orElse(null);
+        User friend = this.userRepository.findById(friendId).orElse(null);
+        if (user == null || friend == null) { return null; }
+        user.addFriend(friend);
         return this.userRepository.save(user);
     }
     @Override
     @Transactional
-    public User removeFriend(User user, User friend){
-        user.getFriends().remove(friend);
+    public User removeFriend(Long userId, Long friendId){
+        User user = this.userRepository.findById(userId).orElse(null);
+        User friend = this.userRepository.findById(friendId).orElse(null);
+        if (user == null || friend == null) { return null; }
+        user.removeFriend(friend);
         return this.userRepository.save(user);
     }
 }

@@ -32,19 +32,19 @@ public class Programacion3Application {
 			userService.createRole(user);
 
 			// Create users
-			User userAdmin = userService.createUser(new User("admin", "admin", "admin@gmail.com", admin, null, null));
-			User user1 = userService.createUser(new User("user1", "user1", "user1@gmail.com", user, null, null));
-			User user2 = userService.createUser(new User("user2", "user2", "user2@gmail.com", user, null, null));
-			User user3 = userService.createUser(new User("user3", "user3", "user3@gmail.com", user, null, null));
-			User user4 = userService.createUser(new User("user4", "user4", "user4@gmail.com", user, null, null));
+			User userAdmin = userService.createUser(new User("admin", "admin", "admin@gmail.com", admin));
+			User user1 = userService.createUser(new User("user1", "user1", "user1@gmail.com", user));
+			User user2 = userService.createUser(new User("user2", "user2", "user2@gmail.com", user));
+			User user3 = userService.createUser(new User("user3", "user3", "user3@gmail.com", user));
+			User user4 = userService.createUser(new User("user4", "user4", "user4@gmail.com", user));
 
 			// Add friends
-			userService.addFriend(user1, user2);
-			userService.addFriend(user1, user3);
-			userService.addFriend(user1, user4);
-			userService.addFriend(user2, user3);
-			userService.addFriend(user2, user4);
-			userService.addFriend(user3, user4);
+			userService.addFriend(user1.getId(), user2.getId());
+			userService.addFriend(user1.getId(), user3.getId());
+			userService.addFriend(user1.getId(), user4.getId());
+			userService.addFriend(user2.getId(), user3.getId());
+			userService.addFriend(user2.getId(), user4.getId());
+			userService.addFriend(user3.getId(), user4.getId());
 
 			// Add posts
 			Post post1 = postService.createPost("Post1", user1);
