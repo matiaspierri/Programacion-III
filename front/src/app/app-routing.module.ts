@@ -1,23 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { UserInfoComponent } from './componentes/user-info/user-info.component';
-import { HomeComponent } from './componentes/home/home.component';
-import { NotFoundComponent } from './componentes/not-found/not-found.component';
-import { LoginComponent } from './componentes/login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { StartComponent } from './components/start/start.component';
 
-const routes : Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'info', component: UserInfoComponent},
-  {path: '**', component: NotFoundComponent }
+const routes: Routes = [
+  { path: '', component: StartComponent },
+  { path: 'login', component: LoginComponent },
 ]
 
 @NgModule({
   declarations: [],
   imports: [
     RouterModule.forRoot(routes)
-  ], 
+  ],
   exports: [
     RouterModule
   ]
