@@ -27,6 +27,14 @@ export class ApiService {
     });
   }
 
+  register(username: string, password: string, email: string): Observable<ResponseLoginDTO> {
+    return this.http.post<ResponseLoginDTO>(this._url + "auth/register", {
+      username: username,
+      password: password,
+      email: email,
+    });
+  }
+
   getUserInfo(): Observable<User> {
     return this.http.get<User>(this._url + "user", this.getAuthHeader());
   }

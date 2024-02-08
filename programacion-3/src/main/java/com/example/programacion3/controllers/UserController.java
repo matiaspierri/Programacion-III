@@ -1,5 +1,7 @@
 package com.example.programacion3.controllers;
 
+import com.example.programacion3.dto.Login.ResponseLoginDTO;
+import com.example.programacion3.dto.Register.RegisterDTO;
 import com.example.programacion3.models.User;
 import com.example.programacion3.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

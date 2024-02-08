@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, EMPTY, Observable, concatMap, of, switchMap } from "rxjs";
 import { ResponseLoginDTO } from "./../../dto/ResponseLoginDTO";
 import { User } from "./../../model/User";
 import { ApiService } from "./../../services/api/api.service";
+import { map, mapTo } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root",
@@ -47,20 +48,22 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<ResponseLoginDTO> {
-    let response = this.apiService.login(username, password);
-    response.subscribe((jwt) => {
-      if (jwt.token) {
-        localStorage.setItem("token", jwt.token!);
-        this.setLoggedInStatus(true);
-        this.apiService.getUserInfo().subscribe((data) => {
-          this.setUserData(data);
-        });
-      } else {
-        this.setUserData({});
-        this.setLoggedInStatus(false);
-      }
-    });
-    return response;
+    return this.apiService.login(username, password).pipe(
+      concatMap((response) => {
+        if (response.token) {
+          const token = response.token;
+          localStorage.setItem("token", token!);
+          this.setLoggedInStatus(true);
+          return this.apiService.getUserInfo().pipe(map((data) => {
+            this.setUserData(data);
+            return { token: token };
+          }));
+        } else {
+          this.setUserData({});
+          this.setLoggedInStatus(false);
+          return of({ token: "" });
+        }
+      }))
   }
 
   logout() {
@@ -68,4 +71,25 @@ export class AuthService {
     this.setUserData({});
     this.setLoggedInStatus(false);
   }
+
+  register(username: string, password: string, email: string): Observable<ResponseLoginDTO> {
+    return this.apiService.register(username, password, email).pipe(
+      concatMap((response) => {
+        if (response.token) {
+          const token = response.token;
+          localStorage.setItem("token", token!);
+          this.setLoggedInStatus(true);
+          return this.apiService.getUserInfo().pipe(map((data) => {
+            this.setUserData(data);
+            return { token: token };
+          }));
+        } else {
+          this.setUserData({});
+          this.setLoggedInStatus(false);
+          return of({ token: "" });
+        }
+      }))
+  }
+
+
 }

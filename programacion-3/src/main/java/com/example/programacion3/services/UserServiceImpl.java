@@ -103,4 +103,15 @@ public class UserServiceImpl implements IUserService {
         user.removeFriend(friend);
         return this.userRepository.save(user);
     }
+
+    @Override
+    @Transactional
+    public String register(String username, String password, String email) {
+        Role userRole = this.roleRepository.findByName("USER").orElse(null);
+        if (userRole == null) { return null; }
+        if(this.userRepository.existsByUsername(username)) { return null; }
+        User user = new User(username, password, email, userRole);
+        this.createUser(user);
+        return this.authenticate(username, password);
+    }
 }
