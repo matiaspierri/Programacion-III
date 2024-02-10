@@ -21,6 +21,7 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AdminComponent } from './components/admin/admin.component';
     DeleteDialogComponent,
     AddFriendDialogComponent,
     AdminComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

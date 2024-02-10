@@ -7,13 +7,15 @@ import { FriendsComponent } from './components/friends/friends.component';
 import { userGuard } from './guards/user/user.guard';
 import { adminGuard } from './guards/admin/admin.guard';
 import { AdminComponent } from './components/admin/admin.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'friends', component: FriendsComponent, canActivate: [userGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [adminGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
+  { path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({
