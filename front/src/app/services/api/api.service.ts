@@ -61,4 +61,8 @@ export class ApiService {
   deleteUser(id: Number): Observable<User> {
     return this.http.delete(this._url + "admin/deleteuser/" + id, this.getAuthHeader());
   }
+
+  updateUserInfo(username: string, email: string): Observable<User> {
+    return this.http.put(this._url + "user/update", { username: username, email: email }, this.getAuthHeader());
+  }
 }

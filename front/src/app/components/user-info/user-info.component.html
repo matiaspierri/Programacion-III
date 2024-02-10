@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h4>User Info</h4>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="!canEdit">
+        <p>Username: {{username}}</p>
+        <p>Email: {{email}}</p>
+        <p>Role: {{role}}</p>
+    </mat-card-content>
+    <mat-card-content *ngIf="canEdit">
+        <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="username">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email" [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Role" [(ngModel)]="role" disabled>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="update()">Update</button>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="!canEdit" mat-flat-button color="primary" (click)="editUserInfo()">Edit</button>
+        <button *ngIf="canEdit" mat-flat-button color="primary" (click)="editUserInfo()">Cancel</button>
+    </mat-card-actions>
+</mat-card>

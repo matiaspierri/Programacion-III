@@ -144,4 +144,12 @@ public class UserServiceImpl implements IUserService {
         this.userRepository.findAll().forEach(users::add);
         return users;
     }
+
+    @Override
+    public User update(String username, String email) {
+        User user = this.getUserInfo();
+        user.setUsername(username);
+        user.setEmail(email);
+        return this.userRepository.save(user);
+    }
 }

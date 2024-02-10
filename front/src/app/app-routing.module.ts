@@ -8,11 +8,13 @@ import { userGuard } from './guards/user/user.guard';
 import { adminGuard } from './guards/admin/admin.guard';
 import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'userinfo', component: UserInfoComponent, canActivate: [userGuard] },
   { path: 'friends', component: FriendsComponent, canActivate: [userGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: '**', component: NotFoundComponent }

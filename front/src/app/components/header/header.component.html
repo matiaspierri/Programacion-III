@@ -6,7 +6,7 @@
             routerLinkActive="active">Users</button>
         <button *ngIf="isLoggedIn" mat-flat-button routerLink="/friends" routerLinkActive="active">My Friends</button>
         <button *ngIf="isLoggedIn" mat-flat-button routerLink="/" routerLinkActive="active">My Posts</button>
-        <button *ngIf="isLoggedIn" mat-flat-button>{{username}}</button>
+        <button *ngIf="isLoggedIn" mat-flat-button routerLink="/userinfo">{{username}}</button>
         <button *ngIf="isLoggedIn" mat-flat-button (click)="logout()">Logout</button>
         <button *ngIf="!isLoggedIn" mat-flat-button routerLink="/login" routerLinkActive="active">Login</button>
         <button *ngIf="!isLoggedIn" mat-flat-button routerLink="/register" routerLinkActive="active">Register</button>

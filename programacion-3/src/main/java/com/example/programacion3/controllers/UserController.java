@@ -51,4 +51,9 @@ public class UserController {
     public User getByUsername(@RequestParam String username) {
         return this.userService.getByUsername(username);
     }
+
+    @PutMapping(path = "/update")
+    public User update(@RequestBody RegisterDTO registerDTO) {
+        return this.userService.update(registerDTO.getUsername(), registerDTO.getEmail());
+    }
 }

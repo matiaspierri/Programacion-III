@@ -31,4 +31,7 @@ export class UserService {
   deleteUser(id: Number): Observable<User> {
     return this.apiService.deleteUser(id);
   }
+  updateUserInfo(username: string, email: string): Observable<User> {
+    return this.apiService.updateUserInfo(username, email);
+  }
 }

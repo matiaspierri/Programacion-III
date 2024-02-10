@@ -24,4 +24,5 @@ public interface IUserService {
     User addFriend(String username);
     void deleteUser(Long id);
     List<User> getUsers();
+    User update(String username, String email);
 }

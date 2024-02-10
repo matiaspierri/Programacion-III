@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AddFriendDialogComponent,
     AdminComponent,
     NotFoundComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
