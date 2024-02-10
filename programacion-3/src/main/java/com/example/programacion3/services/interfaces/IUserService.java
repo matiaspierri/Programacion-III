@@ -22,4 +22,6 @@ public interface IUserService {
     String register(String username, String password, String email);
     User getByUsername(String username);
     User addFriend(String username);
+    void deleteUser(Long id);
+    List<User> getUsers();
 }

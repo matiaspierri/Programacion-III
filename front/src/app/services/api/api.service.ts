@@ -53,4 +53,12 @@ export class ApiService {
       params: { username: username },
     });
   }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this._url + "admin/users", this.getAuthHeader());
+  }
+
+  deleteUser(id: Number): Observable<User> {
+    return this.http.delete(this._url + "admin/deleteuser/" + id, this.getAuthHeader());
+  }
 }

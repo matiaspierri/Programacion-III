@@ -25,4 +25,10 @@ export class UserService {
   addFriend(username: string): Observable<User> {
     return this.apiService.addFriend(username);
   }
+  getUsers(): Observable<User[]> {
+    return this.apiService.getUsers();
+  }
+  deleteUser(id: Number): Observable<User> {
+    return this.apiService.deleteUser(id);
+  }
 }

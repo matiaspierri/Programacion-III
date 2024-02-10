@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AddFriendDialogComponent } from './components/add-friend-dialog/add-fri
     FriendsComponent,
     DeleteDialogComponent,
     AddFriendDialogComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

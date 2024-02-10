@@ -133,5 +133,15 @@ public class UserServiceImpl implements IUserService {
         return this.userRepository.findByUsername(username).orElse(null);
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        this.userRepository.deleteById(id);
+    }
 
+    @Override
+    public List<User> getUsers() {
+        List<User> users = new ArrayList<>();
+        this.userRepository.findAll().forEach(users::add);
+        return users;
+    }
 }
