@@ -37,6 +37,7 @@ public class Programacion3Application {
 			User user2 = userService.createUser(new User("user2", "user2", "user2@gmail.com", user));
 			User user3 = userService.createUser(new User("user3", "user3", "user3@gmail.com", user));
 			User user4 = userService.createUser(new User("user4", "user4", "user4@gmail.com", user));
+			User user5 = userService.createUser(new User("user5", "user5", "user5@gmail.com", user));
 
 			// Add friends
 			userService.addFriend(user1.getId(), user2.getId());

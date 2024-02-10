@@ -37,8 +37,18 @@ public class UserController {
         return this.userService.addFriend(id);
     }
 
+    @PostMapping(path = "/addfriend")
+    public User addFriend(@RequestParam String username) {
+        return this.userService.addFriend(username);
+    }
+
     @DeleteMapping(path = "/removefriend/{id}")
     public User removeFriend(@PathVariable Long id) {
         return this.userService.removeFriend(id);
+    }
+
+    @GetMapping(path = "/getByUsername")
+    public User getByUsername(@RequestParam String username) {
+        return this.userService.getByUsername(username);
     }
 }

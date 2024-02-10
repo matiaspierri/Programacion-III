@@ -1,0 +1,16 @@
+<h2 mat-dialog-title class="primary">
+    {{dialogTitle}}
+</h2>
+<mat-dialog-content [formGroup]="newFriendForm">
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput id="nameInput" formControlName="username" required value="{{nameUsed}}" />
+    </mat-form-field>
+    <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+    </mat-error>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button (click)="close()">Cancel</button>
+        <button mat-raised-button (click)="save()" [disabled]="!newFriendForm.valid">Save</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

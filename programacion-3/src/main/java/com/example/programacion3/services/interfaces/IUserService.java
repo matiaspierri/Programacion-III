@@ -20,4 +20,6 @@ public interface IUserService {
     User removeFriend(Long id);
     User removeFriend(Long userId, Long friendId);
     String register(String username, String password, String email);
+    User getByUsername(String username);
+    User addFriend(String username);
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseLoginDTO } from 'src/app/dto/ResponseLoginDTO';
@@ -37,5 +37,20 @@ export class ApiService {
 
   getUserInfo(): Observable<User> {
     return this.http.get<User>(this._url + "user", this.getAuthHeader());
+  }
+
+  getUserFriends(): Observable<User[]> {
+    return this.http.get<User[]>(this._url + "user/friends", this.getAuthHeader());
+  }
+
+  deleteFriend(id: Number): Observable<User> {
+    return this.http.delete(this._url + "user/removefriend/" + id, this.getAuthHeader());
+  }
+
+  addFriend(username: string): Observable<User> {
+    return this.http.post(this._url + "user/addfriend", {}, {
+      ...this.getAuthHeader(),
+      params: { username: username },
+    });
   }
 }

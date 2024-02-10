@@ -13,4 +13,16 @@ export class UserService {
   getUserInfo(): Observable<User> {
     return this.apiService.getUserInfo();
   }
+
+  getUserFriends(): Observable<User[]> {
+    return this.apiService.getUserFriends();
+  }
+
+  deleteFriend(id: Number): Observable<User> {
+    return this.apiService.deleteFriend(id);
+  }
+
+  addFriend(username: string): Observable<User> {
+    return this.apiService.addFriend(username);
+  }
 }

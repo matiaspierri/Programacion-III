@@ -82,12 +82,25 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional
     public User addFriend(Long userId, Long friendId){
+        if(userId.equals(friendId)) { return null; } // Can't add yourself as a friend
         User user = this.userRepository.findById(userId).orElse(null);
         User friend = this.userRepository.findById(friendId).orElse(null);
         if (user == null || friend == null) { return null; }
         user.addFriend(friend);
         return this.userRepository.save(user);
     }
+
+    @Override
+    @Transactional
+    public User addFriend(String username){
+        User user = this.getUserInfo();
+        if(username.equals(user.getUsername())) { return null; } // Can't add yourself as a friend
+        User friend = this.userRepository.findByUsername(username).orElse(null);
+        if (friend == null) { return null; }
+        user.addFriend(friend);
+        return this.userRepository.save(user);
+    }
+
     @Override
     @Transactional
     public User removeFriend(Long id){
@@ -114,4 +127,11 @@ public class UserServiceImpl implements IUserService {
         this.createUser(user);
         return this.authenticate(username, password);
     }
+
+    @Override
+    public User getByUsername(String username) {
+        return this.userRepository.findByUsername(username).orElse(null);
+    }
+
+
 }

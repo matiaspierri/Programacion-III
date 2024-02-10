@@ -15,6 +15,11 @@ import { StartComponent } from './components/start/start.component';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
+import { FriendsComponent } from './components/friends/friends.component';
+import { MatTableModule } from '@angular/material/table';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,9 @@ import { RegisterComponent } from './components/register/register.component';
     LoginComponent,
     StartComponent,
     RegisterComponent,
+    FriendsComponent,
+    DeleteDialogComponent,
+    AddFriendDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,9 @@ import { RegisterComponent } from './components/register/register.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
