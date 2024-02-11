@@ -30,15 +30,15 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     @Transactional
-    public Post createPost(String description, User user) {
-        return this.postRepository.save(new Post(description, user));
+    public Post createPost(String title, String description, User user) {
+        return this.postRepository.save(new Post(title, description, user));
     }
 
     @Override
     @Transactional
-    public Post createPost(String description, List<ImageDTO> images) {
+    public Post createPost(String title, String description, List<ImageDTO> images) {
         User user = userService.getUserInfo();
-        Post post = new Post(description, user);
+        Post post = new Post(title, description, user);
         images.forEach(imageDTO -> post.addImage(new Image(imageDTO.getTitle(), imageDTO.getUrl(), post)));
         return this.postRepository.save(post);
     }
@@ -46,7 +46,8 @@ public class PostServiceImpl implements IPostService {
     @Override
     @Transactional(readOnly = true)
     public Post getPostById(Long id) {
-        return this.postRepository.findById(id).orElse(null);
+        Post post = this.postRepository.findById(id).orElse(null);
+        return post;
     }
 
     @Override
@@ -77,5 +78,11 @@ public class PostServiceImpl implements IPostService {
         return this.postRepository.save(post);
     }
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public List<Post> getPosts() {
+        List<Post> posts = new ArrayList<>();
+        this.postRepository.findAll().forEach(posts::add);
+        return posts;
+    }
 }

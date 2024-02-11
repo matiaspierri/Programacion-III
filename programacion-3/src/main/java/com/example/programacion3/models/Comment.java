@@ -20,12 +20,11 @@ public class Comment {
     @Column(nullable = false)
     private String text;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
-    @JsonIgnore
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_post", nullable = false)
     @JsonIgnore
     private Post post;

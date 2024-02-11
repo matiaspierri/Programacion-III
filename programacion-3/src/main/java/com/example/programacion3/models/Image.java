@@ -1,5 +1,6 @@
 package com.example.programacion3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -19,7 +20,7 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", nullable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private Post post;
 
     public Image(){

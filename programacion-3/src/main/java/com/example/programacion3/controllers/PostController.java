@@ -14,6 +14,17 @@ public class PostController {
 
     @PostMapping(value = "")
     public Post createPost(@RequestBody PostDTO post){
-        return this.postService.createPost(post.getDescription(), post.getImages());
+        return this.postService.createPost(post.getTitle(), post.getDescription(), post.getImages());
     }
+
+    @GetMapping(value = "")
+    public Iterable<Post> getPosts(){
+        return this.postService.getPosts();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Post getPostById(@PathVariable Long id){
+        return this.postService.getPostById(id);
+    }
+
 }

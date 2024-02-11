@@ -32,11 +32,10 @@ public class User implements UserDetails {
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = {})
     @JoinColumn(name = "id_role", nullable = false)
-    @JsonManagedReference
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnore
     private List<Post> posts = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -50,7 +49,7 @@ public class User implements UserDetails {
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     public User() {

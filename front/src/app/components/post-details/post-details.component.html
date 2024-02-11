@@ -1,0 +1,19 @@
+<div *ngIf="selectedPost">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ selectedPost.title }}</mat-card-title>
+            <mat-card-subtitle>{{ selectedPost.description }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="selectedPost.images" class="post-container">
+            <img *ngFor="let image of selectedPost.images" class="post" [src]="image.url" alt="{{ image.title }}">
+        </mat-card-content>
+        <mat-card-content *ngIf="selectedPost.comments" class="comments">
+            <!-- <p *ngFor="let comment of selectedPost.comments">{{ comment.text }}</p> -->
+            <div *ngFor="let comment of selectedPost.comments" class="comment">
+                <strong *ngIf="comment.user && comment.user.username"> {{ comment.user.username }}</strong> - {{
+                comment.createdAt | date: 'medium' }}
+                <p>{{ comment.text }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,6 +1,7 @@
 package com.example.programacion3.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -18,26 +19,27 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
-    @JsonManagedReference
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JsonBackReference
     private List<Image> images = new ArrayList<>();
 
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments = new ArrayList<>();
 
     public Post() {
     }
 
-    public Post(String description, User user) {
+    public Post(String title, String description, User user) {
+        this.title = title;
         this.description = description;
         this.user = user;
     }
@@ -47,6 +49,12 @@ public class Post {
     }
     public Long getId(){
         return this.id;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle(){
+        return this.title;
     }
     public void setDescription(String description) {
         this.description = description;

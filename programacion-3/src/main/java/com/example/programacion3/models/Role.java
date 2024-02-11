@@ -19,7 +19,7 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     public Role() {

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseLoginDTO } from 'src/app/dto/ResponseLoginDTO';
+import { Post } from 'src/app/model/Post';
 import { User } from 'src/app/model/User';
 
 @Injectable({
@@ -64,5 +65,13 @@ export class ApiService {
 
   updateUserInfo(username: string, email: string): Observable<User> {
     return this.http.put(this._url + "user/update", { username: username, email: email }, this.getAuthHeader());
+  }
+
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this._url + "post");
+  }
+
+  getPostById(id: number): Observable<Post> {
+    return this.http.get<Post>(this._url + "post/" + id);
   }
 }

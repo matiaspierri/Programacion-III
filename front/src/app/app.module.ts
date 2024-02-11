@@ -23,6 +23,10 @@ import { AddFriendDialogComponent } from './components/add-friend-dialog/add-fri
 import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { PostTableComponent } from './components/post-table/post-table.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     AdminComponent,
     NotFoundComponent,
     UserInfoComponent,
+    PostTableComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +57,12 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     MatInputModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,0 +1,22 @@
+.post-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: flex-start !important;
+}
+
+.post {
+    width: 300px;
+    margin: 15px;
+}
+
+.comments {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

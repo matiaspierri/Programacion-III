@@ -14,6 +14,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Random;
+
 @SpringBootApplication
 public class Programacion3Application {
 
@@ -48,22 +53,18 @@ public class Programacion3Application {
 			userService.addFriend(user3.getId(), user4.getId());
 
 			// Add posts
-			Post post1 = postService.createPost("Post1", user1);
-			Image image1 = imageService.createImage("Image1", "https://www.google.com", post1);
-			Image image2 = imageService.createImage("Image2", "https://www.google.com", post1);
-			Image image3 = imageService.createImage("Image3", "https://www.google.com", post1);
-			Post post2 = postService.createPost("Post2", user2);
-			Image image4 = imageService.createImage("Image4", "https://www.google.com", post2);
-			Image image5 = imageService.createImage("Image5", "https://www.google.com", post2);
-			Image image6 = imageService.createImage("Image6", "https://www.google.com", post2);
-			Post post3 = postService.createPost("Post3", user3);
-			Image image7 = imageService.createImage("Image7", "https://www.google.com", post3);
-			Image image8 = imageService.createImage("Image8", "https://www.google.com", post3);
-			Image image9 = imageService.createImage("Image9", "https://www.google.com", post3);
-			Post post4 = postService.createPost("Post4", user4);
-			Image image10 = imageService.createImage("Image10", "https://www.google.com", post4);
-			Image image11 = imageService.createImage("Image11", "https://www.google.com", post4);
-			Image image12 = imageService.createImage("Image12", "https://www.google.com", post4);
+			Post post1 = postService.createPost("Post1", "Post1 Description", user1);
+			Post post2 = postService.createPost("Post2", "Post2 Description", user2);
+			Post post3 = postService.createPost("Post3", "Post3 Description", user3);
+			Post post4 = postService.createPost("Post4", "Post4 Description", user4);
+
+			// Add images
+			for(int i = 0; i < 10; i++){
+				imageService.createImage(post1);
+				imageService.createImage(post2);
+				imageService.createImage(post3);
+				imageService.createImage(post4);
+			}
 
 			// Add comments
 			commentService.createComment("Comment1", user1, post1);

@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { ApiService } from '../api/api.service';
+import { Observable } from 'rxjs';
+import { Post } from 'src/app/model/Post';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostService {
+  constructor(private apiService: ApiService) { }
+  getPosts(): Observable<Post[]> {
+    return this.apiService.getPosts();
+  }
+  getPostById(id: number): Observable<Post> {
+    return this.apiService.getPostById(id);
+  }
+}
