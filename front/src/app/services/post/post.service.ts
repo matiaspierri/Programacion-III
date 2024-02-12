@@ -20,4 +20,7 @@ export class PostService {
   addPost(post: Post): Observable<Post> {
     return this.apiService.addPost(post);
   }
+  deletePost(id: number): Observable<Post> {
+    return this.apiService.deletePost(id);
+  }
 }

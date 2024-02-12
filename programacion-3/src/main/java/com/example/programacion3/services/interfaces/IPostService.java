@@ -18,4 +18,5 @@ public interface IPostService {
     Post addImageToPost(Post post, Image image);
     Post removeImageFromPost(Post post, Image image);
     List<Post> getPosts();
+    void deletePost(Long id);
 }

@@ -11,3 +11,12 @@
     width: 300px;
     margin: 15px;
 }
+
+.post img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.postInfo {
+    cursor: pointer;
+}

@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Post } from 'src/app/model/Post';
 import { PostService } from 'src/app/services/post/post.service';
 import { AddPostDialogComponent } from '../add-post-dialog/add-post-dialog.component';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-my-posts',
@@ -12,7 +13,7 @@ import { AddPostDialogComponent } from '../add-post-dialog/add-post-dialog.compo
 export class MyPostsComponent implements OnInit {
   public posts: Post[] = [];
 
-  constructor(private postService: PostService, private dialog: MatDialog) { }
+  constructor(public postService: PostService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.postService.getMyPosts().subscribe((data) => {
@@ -36,7 +37,6 @@ export class MyPostsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddPostDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.postService.addPost(result).subscribe((data) => {
           this.ngOnInit();
@@ -44,5 +44,29 @@ export class MyPostsComponent implements OnInit {
       }
     });
 
+  }
+
+  openDeletePostDialog(id: number) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      dialogTitle: "Delete Post",
+      dialogContent: "Are you sure you want to delete this post?",
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+    };
+
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.postService.deletePost(id).subscribe(() => {
+          this.ngOnInit();
+        });
+      }
+    });
   }
 }

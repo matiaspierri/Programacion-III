@@ -32,4 +32,8 @@ public class PostController {
         return this.postService.getPostsByUser();
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void deletePost(@PathVariable Long id){
+        this.postService.deletePost(id);
+    }
 }

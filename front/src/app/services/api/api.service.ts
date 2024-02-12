@@ -80,7 +80,10 @@ export class ApiService {
   }
 
   addPost(content: Post): Observable<Post> {
-    console.log(content)
     return this.http.post<Post>(this._url + "post", content, this.getAuthHeader());
+  }
+
+  deletePost(id: number): Observable<Post> {
+    return this.http.delete<Post>(this._url + "post/" + id, this.getAuthHeader());
   }
 }
