@@ -4,8 +4,8 @@
         <button mat-flat-button routerLink="/" routerLinkActive="active">Home</button>
         <button *ngIf="isLoggedIn && userRole === 'ADMIN'" mat-flat-button routerLink="/admin"
             routerLinkActive="active">Users</button>
-        <button *ngIf="isLoggedIn" mat-flat-button routerLink="/friends" routerLinkActive="active">My Friends</button>
-        <button *ngIf="isLoggedIn" mat-flat-button routerLink="/" routerLinkActive="active">My Posts</button>
+        <button *ngIf="isLoggedIn" mat-flat-button routerLink="/myfriends" routerLinkActive="active">My Friends</button>
+        <button *ngIf="isLoggedIn" mat-flat-button routerLink="/myposts" routerLinkActive="active">My Posts</button>
         <button *ngIf="isLoggedIn" mat-flat-button routerLink="/userinfo">{{username}}</button>
         <button *ngIf="isLoggedIn" mat-flat-button (click)="logout()">Logout</button>
         <button *ngIf="!isLoggedIn" mat-flat-button routerLink="/login" routerLinkActive="active">Login</button>

@@ -30,15 +30,15 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     @Transactional
-    public Post createPost(String title, String description, User user) {
-        return this.postRepository.save(new Post(title, description, user));
+    public Post createPost(String title, String content, User user) {
+        return this.postRepository.save(new Post(title, content, user));
     }
 
     @Override
     @Transactional
-    public Post createPost(String title, String description, List<ImageDTO> images) {
+    public Post createPost(String title, String content, List<ImageDTO> images) {
         User user = userService.getUserInfo();
-        Post post = new Post(title, description, user);
+        Post post = new Post(title, content, user);
         images.forEach(imageDTO -> post.addImage(new Image(imageDTO.getTitle(), imageDTO.getUrl(), post)));
         return this.postRepository.save(post);
     }
@@ -46,21 +46,28 @@ public class PostServiceImpl implements IPostService {
     @Override
     @Transactional(readOnly = true)
     public Post getPostById(Long id) {
-        Post post = this.postRepository.findById(id).orElse(null);
-        return post;
+        return this.postRepository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Post> getPostsByUser(User user) {
-        return this.postRepository.findByUser(user);
+        return this.postRepository.findByUserOrderByCreatedAtDesc(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Post> getPostsByUser() {
+        User user = userService.getUserInfo();
+        return this.postRepository.findByUserOrderByCreatedAtDesc(user);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Post> getPostsByFriends(User user) {
         List<Post> posts = new ArrayList<>();
-        user.getFriends().forEach(friend -> posts.addAll(this.postRepository.findByUser(friend)));
+        user.getFriends().forEach(friend -> posts.addAll(this.postRepository.findByUserOrderByCreatedAtDesc(friend)));
+        posts.sort((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()));
         return posts;
     }
 
@@ -81,8 +88,6 @@ public class PostServiceImpl implements IPostService {
     @Override
     @Transactional(readOnly = true)
     public List<Post> getPosts() {
-        List<Post> posts = new ArrayList<>();
-        this.postRepository.findAll().forEach(posts::add);
-        return posts;
+        return this.postRepository.findAllByOrderByCreatedAtDesc();
     }
 }

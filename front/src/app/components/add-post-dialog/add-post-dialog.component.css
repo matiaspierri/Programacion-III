@@ -1,0 +1,35 @@
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80vw;
+}
+
+mat-dialog-content mat-form-field {
+    width: 100%;
+}
+
+.images {
+    width: 100%;
+}
+
+.imageTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.imageInput {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.imageInput .title {
+    width: 30%;
+}
+
+.imageInput .url {
+    width: 65%;
+}

@@ -19,7 +19,6 @@ export class PostDetailsComponent {
       (post) => {
         if (post) {
           this.selectedPost = post;
-          console.log(this.selectedPost)
         }
         else {
           this.router.navigate(['/404']);

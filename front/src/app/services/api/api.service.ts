@@ -68,10 +68,19 @@ export class ApiService {
   }
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this._url + "post");
+    return this.http.get<Post[]>(this._url + "post/public");
   }
 
   getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(this._url + "post/" + id);
+    return this.http.get<Post>(this._url + "post/public/" + id);
+  }
+
+  getMyPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this._url + "post/user", this.getAuthHeader());
+  }
+
+  addPost(content: Post): Observable<Post> {
+    console.log(content)
+    return this.http.post<Post>(this._url + "post", content, this.getAuthHeader());
   }
 }

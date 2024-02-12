@@ -6,15 +6,15 @@ import java.util.List;
 
 public class PostDTO {
     private String title;
-    private String description;
+    private String content;
     private List<ImageDTO> images;
 
     public PostDTO() {
     }
 
-    public PostDTO(String title, String description, List<ImageDTO> images) {
+    public PostDTO(String title, String content, List<ImageDTO> images) {
         this.title = title;
-        this.description = description;
+        this.content = content;
         this.images = images;
     }
 
@@ -22,8 +22,8 @@ public class PostDTO {
         return title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
     public List<ImageDTO> getImages() {

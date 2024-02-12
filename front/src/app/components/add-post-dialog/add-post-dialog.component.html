@@ -1,0 +1,42 @@
+<h2 mat-dialog-title class="primary">
+    {{dialogTitle}}
+</h2>
+<button mat-raised-button color="accent" (click)="addImage()" style="margin-left: 20px;">Add Image</button>
+<mat-dialog-content [formGroup]="newPostForm">
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput formControlName="content" required></textarea>
+    </mat-form-field>
+    <div formArrayName="images" class="images">
+        <div *ngFor="let image of images.controls; let i = index">
+            <div class="imageTitle">
+                Image {{i + 1}}
+                <button mat-icon-button *ngIf="i !== 0" (click)="removeImage()">
+                    <mat-icon color="warn">delete_forever</mat-icon>
+                </button>
+            </div>
+            <div class="imageInput">
+                <div class="title">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input matInput [formControl]="imageTitle(image)" required />
+                    </mat-form-field>
+                </div>
+                <div class="url">
+                    <mat-form-field>
+                        <mat-label>URL</mat-label>
+                        <input matInput [formControl]="imageUrl(image)" required />
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button (click)="close()">Cancel</button>
+        <button mat-raised-button (click)="save()" [disabled]="!newPostForm.valid">Save</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

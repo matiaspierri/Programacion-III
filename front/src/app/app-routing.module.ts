@@ -10,13 +10,15 @@ import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'userinfo', component: UserInfoComponent, canActivate: [userGuard] },
-  { path: 'friends', component: FriendsComponent, canActivate: [userGuard] },
+  { path: 'myfriends', component: FriendsComponent, canActivate: [userGuard] },
+  { path: 'myposts', component: MyPostsComponent, canActivate: [userGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: 'post/:id', component: PostDetailsComponent },
   { path: '404', component: NotFoundComponent },

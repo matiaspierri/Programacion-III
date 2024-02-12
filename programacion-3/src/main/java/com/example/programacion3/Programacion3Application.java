@@ -53,10 +53,14 @@ public class Programacion3Application {
 			userService.addFriend(user3.getId(), user4.getId());
 
 			// Add posts
-			Post post1 = postService.createPost("Post1", "Post1 Description", user1);
-			Post post2 = postService.createPost("Post2", "Post2 Description", user2);
-			Post post3 = postService.createPost("Post3", "Post3 Description", user3);
-			Post post4 = postService.createPost("Post4", "Post4 Description", user4);
+			Post post1 = postService.createPost("Post1", "Post1 Content", user1);
+			Post post2 = postService.createPost("Post2", "Post2 Content", user2);
+			Post post3 = postService.createPost("Post3", "Post3 Content", user1);
+			Post post4 = postService.createPost("Post4", "Post4 Content", user2);
+			Post post5 = postService.createPost("Post5", "Post5 Content", user1);
+			Post post6 = postService.createPost("Post6", "Post6 Content", user2);
+			Post post7 = postService.createPost("Post7", "Post7 Content", user1);
+			Post post8 = postService.createPost("Post8", "Post8 Content", user2);
 
 			// Add images
 			for(int i = 0; i < 10; i++){
@@ -64,6 +68,10 @@ public class Programacion3Application {
 				imageService.createImage(post2);
 				imageService.createImage(post3);
 				imageService.createImage(post4);
+				imageService.createImage(post5);
+				imageService.createImage(post6);
+				imageService.createImage(post7);
+				imageService.createImage(post8);
 			}
 
 			// Add comments

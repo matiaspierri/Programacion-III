@@ -27,6 +27,9 @@ import { PostTableComponent } from './components/post-table/post-table.component
 import { MatTabsModule } from '@angular/material/tabs';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
+import { AddPostDialogComponent } from './components/add-post-dialog/add-post-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     UserInfoComponent,
     PostTableComponent,
     PostDetailsComponent,
+    MyPostsComponent,
+    AddPostDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +65,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatDialogModule,
     MatTabsModule,
     MatGridListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

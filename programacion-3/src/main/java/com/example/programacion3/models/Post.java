@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
-    private String description;
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
@@ -35,12 +37,15 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments = new ArrayList<>();
 
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
     public Post() {
     }
 
-    public Post(String title, String description, User user) {
+    public Post(String title, String content, User user) {
         this.title = title;
-        this.description = description;
+        this.content = content;
         this.user = user;
     }
 
@@ -56,11 +61,11 @@ public class Post {
     public String getTitle(){
         return this.title;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
-    public String getDescription(){
-        return this.description;
+    public String getContent(){
+        return this.content;
     }
     public void setUser(User user) {
         this.user = user;
@@ -88,5 +93,8 @@ public class Post {
     }
     public List<Comment> getComments(){
         return this.comments;
+    }
+    public LocalDateTime getCreatedAt(){
+        return this.createdAt;
     }
 }

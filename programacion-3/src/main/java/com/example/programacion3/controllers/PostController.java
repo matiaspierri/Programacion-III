@@ -14,17 +14,22 @@ public class PostController {
 
     @PostMapping(value = "")
     public Post createPost(@RequestBody PostDTO post){
-        return this.postService.createPost(post.getTitle(), post.getDescription(), post.getImages());
+        return this.postService.createPost(post.getTitle(), post.getContent(), post.getImages());
     }
 
-    @GetMapping(value = "")
+    @GetMapping(value = "/public")
     public Iterable<Post> getPosts(){
         return this.postService.getPosts();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/public/{id}")
     public Post getPostById(@PathVariable Long id){
         return this.postService.getPostById(id);
+    }
+
+    @GetMapping(value = "/user")
+    public Iterable<Post> getPostsByUser(){
+        return this.postService.getPostsByUser();
     }
 
 }
