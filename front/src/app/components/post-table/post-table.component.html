@@ -1,5 +1,4 @@
 <div class="post-container">
-    <p *ngIf="posts.length === 0">You have no posts</p>
     <div class="post" *ngFor="let post of posts">
         <mat-card>
             <div (click)="post.id? navigateToDetails(post.id) : false" class="postInfo">

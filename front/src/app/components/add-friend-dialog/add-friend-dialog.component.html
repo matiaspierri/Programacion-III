@@ -4,7 +4,8 @@
 <mat-dialog-content [formGroup]="newFriendForm">
     <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput id="nameInput" formControlName="username" required value="{{nameUsed}}" />
+        <input matInput id="nameInput" formControlName="username" required value="{{nameUsed}}"
+            (keyup.enter)="save()" />
     </mat-form-field>
     <mat-error *ngIf="errorMessage">
         {{errorMessage}}

@@ -1,9 +1,10 @@
 <h1>Friends</h1>
-<button mat-raised-button color="succes" (click)="openAddFriendDialog()">Add Friend</button>
+<button mat-raised-button color="succes" (click)="openAddFriendDialog()" style="margin-bottom: 20px;">Add
+    Friend</button>
 
 <p *ngIf="dataSource.length === 0">You have no friends</p>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table *ngIf="dataSource.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.username}} </td>

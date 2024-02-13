@@ -1,4 +1,9 @@
-<button mat-raised-button color="succes" (click)="openAddPostDialog()">Add Post</button>
+<h1>My Posts</h1>
+
+<button mat-raised-button color="succes" (click)="openAddPostDialog()" style="margin-bottom: 20px;">Add Post</button>
+
+<p *ngIf="posts.length === 0">You have no posts</p>
 
 <app-post-table [posts]="posts" [showActions]="true" [dialog]="dialog" [postService]="postService" [ngOnInit]="ngOnInit"
-    [openDeletePostDialog]="openDeletePostDialog" [openEditPostDialog]="openEditPostDialog"></app-post-table>
+    [openDeletePostDialog]="openDeletePostDialog" [openEditPostDialog]="openEditPostDialog">
+</app-post-table>
