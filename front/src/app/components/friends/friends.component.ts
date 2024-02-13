@@ -4,6 +4,8 @@ import { User } from 'src/app/model/User';
 import { UserService } from 'src/app/services/user/user.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { AddFriendDialogComponent } from '../add-friend-dialog/add-friend-dialog.component';
+import { Post } from 'src/app/model/Post';
+import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
   selector: 'app-friends',
@@ -14,13 +16,17 @@ import { AddFriendDialogComponent } from '../add-friend-dialog/add-friend-dialog
 export class FriendsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'delete'];
   dataSource: User[] = [];
+  posts: Post[] = [];
 
-  constructor(private userService: UserService,
+  constructor(private userService: UserService, private postService: PostService,
     public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.userService.getUserFriends().subscribe((response) => {
       this.dataSource = response;
+    });
+    this.postService.getPostsByFriends().subscribe((response) => {
+      this.posts = response;
     });
   }
 

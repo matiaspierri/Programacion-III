@@ -15,6 +15,7 @@ public interface IPostService {
     List<Post> getPostsByUser(User user);
     List<Post> getPostsByUser();
     List<Post> getPostsByFriends(User user);
+    List<Post> getPostsByFriends();
     Post addImageToPost(Post post, Image image);
     Post removeImageFromPost(Post post, Image image);
     List<Post> getPosts();

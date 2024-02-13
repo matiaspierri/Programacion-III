@@ -79,6 +79,10 @@ export class ApiService {
     return this.http.get<Post[]>(this._url + "post/user", this.getAuthHeader());
   }
 
+  getPostsByFriends(): Observable<Post[]> {
+    return this.http.get<Post[]>(this._url + "post/friends", this.getAuthHeader());
+  }
+
   addPost(content: Post): Observable<Post> {
     return this.http.post<Post>(this._url + "post", content, this.getAuthHeader());
   }

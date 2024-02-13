@@ -21,3 +21,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<h1 style="margin-top: 20px;">My Friends Posts</h1>
+
+<p *ngIf="posts.length === 0">You have no friends posts</p>
+
+<app-post-table [posts]="posts"></app-post-table>

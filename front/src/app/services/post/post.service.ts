@@ -17,6 +17,9 @@ export class PostService {
   getMyPosts(): Observable<Post[]> {
     return this.apiService.getMyPosts();
   }
+  getPostsByFriends(): Observable<Post[]> {
+    return this.apiService.getPostsByFriends();
+  }
   addPost(post: Post): Observable<Post> {
     return this.apiService.addPost(post);
   }

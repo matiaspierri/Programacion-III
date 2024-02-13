@@ -32,6 +32,11 @@ public class PostController {
         return this.postService.getPostsByUser();
     }
 
+    @GetMapping(value = "/friends")
+    public Iterable<Post> getPostsByFriends(){
+        return this.postService.getPostsByFriends();
+    }
+
     @DeleteMapping(value = "/{id}")
     public void deletePost(@PathVariable Long id){
         this.postService.deletePost(id);

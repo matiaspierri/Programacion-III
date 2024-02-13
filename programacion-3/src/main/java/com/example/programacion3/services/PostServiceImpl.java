@@ -77,6 +77,13 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Post> getPostsByFriends() {
+        User user = userService.getUserInfo();
+        return this.getPostsByFriends(user);
+    }
+
+    @Override
     @Transactional
     public Post addImageToPost(Post post, Image image) {
         post.addImage(image);
