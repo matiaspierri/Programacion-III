@@ -67,9 +67,22 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User getUserInfo(Long id) {
+        return this.userRepository.findById(id).orElse(null);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Set<User> getFriends(){
         User user = this.getUserInfo();
+        return user.getFriends();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<User> getFriends(Long id){
+        User user = this.userRepository.findById(id).orElse(null);
+        if (user == null) { return null; }
         return user.getFriends();
     }
 

@@ -14,7 +14,9 @@ public interface IUserService {
     boolean checkUserById(Long id);
     String authenticate(String username, String password);
     User getUserInfo();
+    User getUserInfo(Long id);
     Set<User> getFriends();
+    Set<User> getFriends(Long id);
     User addFriend(Long id);
     User addFriend(Long userId, Long friendId);
     User removeFriend(Long id);
