@@ -90,4 +90,8 @@ export class ApiService {
   editPost(id: number, post: Post): Observable<Post> {
     return this.http.put<Post>(this._url + "post/" + id, post, this.getAuthHeader());
   }
+
+  addComment(postId: number, text: string): Observable<any> {
+    return this.http.post(this._url + "comment/" + postId, { text: text }, this.getAuthHeader());
+  }
 }

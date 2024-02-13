@@ -7,7 +7,15 @@
         <mat-card-content *ngIf="selectedPost.images" class="post-container">
             <img *ngFor="let image of selectedPost.images" class="post" [src]="image.url" alt="{{ image.title }}">
         </mat-card-content>
-        <mat-card-content *ngIf="selectedPost.comments && selectedPost.comments.length > 0" class="comments">
+        <mat-card-content class="comments">
+            <h3>Comments</h3>
+            <mat-form-field *ngIf="isLoggedIn">
+                <input matInput placeholder="Add a comment" [(ngModel)]="commentText" (keyup.enter)="addComment()">
+                <button mat-icon-button (click)="addComment()"
+                    [disabled]="!commentText || commentText.trim().length === 0">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </mat-form-field>
             <div *ngFor="let comment of selectedPost.comments" class="comment">
                 <strong *ngIf="comment.user && comment.user.username"> {{ comment.user.username }}</strong> - {{
                 comment.createdAt | date: 'medium' }}

@@ -45,6 +45,6 @@ public class CommentServiceImpl implements ICommentService {
     @Override
     @Transactional(readOnly = true)
     public ArrayList<Comment> getCommentsByPostId(Long postId) {
-        return commentRepository.findCommentsByPostIdOrderByCreatedAt(postId);
+        return commentRepository.findCommentsByPostIdOrderByCreatedAtAsc(postId);
     }
 }

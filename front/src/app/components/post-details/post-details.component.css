@@ -20,3 +20,11 @@
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+
+.comments mat-form-field {
+    width: 100%;
+}
+
+.comments mat-form-field input {
+    width: 90%;
+}

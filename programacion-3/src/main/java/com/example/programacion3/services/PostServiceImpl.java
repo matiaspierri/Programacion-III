@@ -49,7 +49,9 @@ public class PostServiceImpl implements IPostService {
     @Override
     @Transactional(readOnly = true)
     public Post getPostById(Long id) {
-        return this.postRepository.findById(id).orElse(null);
+        Post post = this.postRepository.findById(id).orElse(null);
+        post.getComments().sort((c1, c2) -> c2.getCreatedAt().compareTo(c1.getCreatedAt()));
+        return post;
     }
 
     @Override

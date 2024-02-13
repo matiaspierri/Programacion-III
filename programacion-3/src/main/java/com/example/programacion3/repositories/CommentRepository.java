@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
-    public ArrayList<Comment> findCommentsByPostIdOrderByCreatedAt(Long postId);
+    public ArrayList<Comment> findCommentsByPostIdOrderByCreatedAtAsc(Long postId);
 }
