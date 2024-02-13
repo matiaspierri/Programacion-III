@@ -36,4 +36,9 @@ public class PostController {
     public void deletePost(@PathVariable Long id){
         this.postService.deletePost(id);
     }
+
+    @PutMapping(value = "/{id}")
+    public Post updatePost(@PathVariable Long id, @RequestBody PostDTO post){
+        return this.postService.updatePost(id, post.getTitle(), post.getContent(), post.getImages());
+    }
 }

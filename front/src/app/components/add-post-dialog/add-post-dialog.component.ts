@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Post } from 'src/app/model/Post';
 
 @Component({
   selector: 'app-add-post-dialog',
@@ -10,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddPostDialogComponent {
   newPostForm!: FormGroup;
   dialogTitle!: string;
+  dialogContent!: Post;
   confirmButtonText!: string;
   cancelButtonText!: string;
 
@@ -19,6 +21,7 @@ export class AddPostDialogComponent {
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     this.dialogTitle = data.dialogTitle;
+    this.dialogContent = data.dialogContent;
     this.confirmButtonText = data.confirmButtonText;
     this.cancelButtonText = data.cancelButtonText;
   }
@@ -26,9 +29,14 @@ export class AddPostDialogComponent {
   ngOnInit(): void {
     this.newPostForm = this.fb.group(
       {
-        title: ["", Validators.required],
-        content: ["", Validators.required],
-        images: this.fb.array([this.createImageFormGroup()]),
+        title: [this.dialogContent.title, [Validators.required]],
+        content: [this.dialogContent.content, [Validators.required]],
+        images: this.fb.array(
+          this.dialogContent.images ? this.dialogContent.images.map((image: any) => this.fb.group({
+            title: [image.title, [Validators.required]],
+            url: [image.url, [Validators.required]],
+          })) : []
+        ),
       }
     );
   }

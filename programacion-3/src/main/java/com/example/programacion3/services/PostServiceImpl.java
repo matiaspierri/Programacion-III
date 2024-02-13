@@ -22,6 +22,9 @@ public class PostServiceImpl implements IPostService {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private ImageServiceImpl imageService;
+
     @Override
     @Transactional
     public Post createPost(Post post) {
@@ -95,5 +98,16 @@ public class PostServiceImpl implements IPostService {
     @Transactional
     public void deletePost(Long id) {
         this.postRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Post updatePost(Long id, String title, String content, List<ImageDTO> images) {
+        Post post = this.getPostById(id);
+        post.setTitle(title);
+        post.setContent(content);
+        this.imageService.deleteImagesByPost(post);
+        images.forEach(imageDTO -> this.imageService.createImage(imageDTO.getTitle(), imageDTO.getUrl(), post));
+        return this.postRepository.save(post);
     }
 }

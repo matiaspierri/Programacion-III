@@ -29,7 +29,7 @@ export class MyPostsComponent implements OnInit {
 
     dialogConfig.data = {
       dialogTitle: "Add Post",
-      dialogContent: "",
+      dialogContent: { title: "", content: "", images: [{ title: "", url: "" }] },
       confirmButtonText: "Add",
       cancelButtonText: "Cancel",
     };
@@ -64,6 +64,30 @@ export class MyPostsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.postService.deletePost(id).subscribe(() => {
+          this.ngOnInit();
+        });
+      }
+    });
+  }
+
+  openEditPostDialog(post: Post) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      dialogTitle: "Edit Post",
+      dialogContent: post,
+      confirmButtonText: "Edit",
+      cancelButtonText: "Cancel",
+    };
+
+    const dialogRef = this.dialog.open(AddPostDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && post.id) {
+        this.postService.editPost(post.id, result).subscribe(() => {
           this.ngOnInit();
         });
       }

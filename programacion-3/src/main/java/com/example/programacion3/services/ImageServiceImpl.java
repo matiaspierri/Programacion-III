@@ -77,4 +77,10 @@ public class ImageServiceImpl implements IImageService {
         int index = random.nextInt(images.size());
         return this.imageRepository.save(new Image(getTitle(index), getImage(index), post));
     }
+
+    @Override
+    @Transactional
+    public void deleteImagesByPost(Post post) {
+        this.imageRepository.deleteAllByPost(post);
+    }
 }

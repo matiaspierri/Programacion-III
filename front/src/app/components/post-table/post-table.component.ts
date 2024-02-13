@@ -12,7 +12,7 @@ import { PostService } from 'src/app/services/post/post.service';
 export class PostTableComponent {
   @Input() posts: Post[] = [];
   @Input() showActions: boolean = false;
-  @Input() editPost(post: Post) { }
+  @Input() openEditPostDialog: (post: Post, dialog: MatDialog, postService: PostService) => void = (post: Post, dialog: MatDialog, postService: PostService) => { };
   @Input() openDeletePostDialog: (id: number, dialog: MatDialog, postService: PostService) => void = (id: number, dialog: MatDialog, postService: PostService) => { };
   @Input() dialog: MatDialog = {} as MatDialog;
   @Input() postService: PostService = {} as PostService;
@@ -28,5 +28,8 @@ export class PostTableComponent {
 
   deletePost(id: number) {
     this.openDeletePostDialog(id, this.dialog, this.postService);
+  }
+  editPost(post: Post) {
+    this.openEditPostDialog(post, this.dialog, this.postService);
   }
 }

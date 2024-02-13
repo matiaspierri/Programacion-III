@@ -19,4 +19,5 @@ public interface IPostService {
     Post removeImageFromPost(Post post, Image image);
     List<Post> getPosts();
     void deletePost(Long id);
+    Post updatePost(Long id, String title, String content, List<ImageDTO> images);
 }

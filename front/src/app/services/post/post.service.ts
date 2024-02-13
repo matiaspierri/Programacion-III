@@ -23,4 +23,7 @@ export class PostService {
   deletePost(id: number): Observable<Post> {
     return this.apiService.deletePost(id);
   }
+  editPost(id: number, post: Post): Observable<Post> {
+    return this.apiService.editPost(id, post);
+  }
 }

@@ -86,4 +86,8 @@ export class ApiService {
   deletePost(id: number): Observable<Post> {
     return this.http.delete<Post>(this._url + "post/" + id, this.getAuthHeader());
   }
+
+  editPost(id: number, post: Post): Observable<Post> {
+    return this.http.put<Post>(this._url + "post/" + id, post, this.getAuthHeader());
+  }
 }
